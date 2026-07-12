@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/data/journey.ts","./src/hooks/useProgress.ts","./src/lib/chime.ts","./src/pages/About.tsx","./src/pages/Home.tsx","./src/pages/Learn.tsx","./src/pages/LearnModule.tsx","./src/pages/PracticeList.tsx","./src/pages/PracticeSession.tsx","./src/pages/ProgressPage.tsx"],"errors":true,"version":"5.9.3"}
