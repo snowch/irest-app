@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getPractice } from '../data/journey'
+import { catalogTitle } from '../data/principles'
 import { useProgress } from '../hooks/useProgress'
+import { useRecordings } from '../hooks/useRecordings'
 import { playChime } from '../lib/chime'
 
 type Phase = 'intro' | 'playing' | 'done'
 
 export default function PracticeSession() {
   const { slug = '' } = useParams()
+  const navigate = useNavigate()
   const practice = getPractice(slug)
   const { recordSession } = useProgress()
+  const { recordings } = useRecordings()
 
   const [phase, setPhase] = useState<Phase>('intro')
   const [stageIndex, setStageIndex] = useState(0)
@@ -113,6 +117,30 @@ export default function PracticeSession() {
         <button className="btn btn--big" onClick={begin}>
           Begin · {practice.minutes} min
         </button>
+
+        {practice.recordingTrack != null && (() => {
+          const track = practice.recordingTrack!
+          const imported = recordings.find((r) => r.num === track)
+          const title = imported?.title ?? catalogTitle(track)
+          return (
+            <div className="audio-option">
+              <div className="audio-option__divider"><span>or</span></div>
+              {imported ? (
+                <button
+                  className="btn btn--ghost btn--big"
+                  onClick={() => navigate(`/recordings?play=${track}`)}
+                >
+                  ▶ Play the recording
+                </button>
+              ) : (
+                <p className="audio-option__hint">
+                  Own the “{title}” recording? Add it in the{' '}
+                  <Link to="/recordings">Audio</Link> tab to listen instead.
+                </p>
+              )}
+            </div>
+          )
+        })()}
       </div>
     )
   }

@@ -602,6 +602,35 @@ a {
   font-size: 1.2rem;
 }
 
+/* ---- Practice intro: audio option ---- */
+.audio-option {
+  margin-top: 0.4rem;
+}
+.audio-option__divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+  margin: 0.9rem 0;
+}
+.audio-option__divider::before,
+.audio-option__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+.audio-option__divider span {
+  padding: 0 12px;
+}
+.audio-option__hint {
+  color: var(--ink-faint);
+  font-size: 0.88rem;
+  text-align: center;
+  margin: 0;
+}
+
 /* ---- Session done ---- */
 .page--session-done {
   text-align: center;
