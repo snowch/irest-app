@@ -61,6 +61,25 @@ export const modules: Module[] = [
       'Before you continue: what drew you to want to learn a practice like this?',
   },
   {
+    slug: 'core-principles',
+    title: 'The Core Principles',
+    minutes: 6,
+    summary:
+      'A handful of foundational ideas that quietly shape everything you do in iRest.',
+    body: [
+      'Before the ten steps and the techniques, iRest rests on a few core principles. They are less like rules to follow and more like a lens through which the whole practice makes sense. You do not have to believe them at the outset — practice is how you test them for yourself.',
+      'Underlying well-being is always present. Beneath every changing mood and sensation is a quiet ground of ease and okay-ness that is always here. iRest does not manufacture calm so much as help you notice the steadiness that was already present underneath the noise.',
+      'Welcome everything. This is the heart of iRest — sometimes called radical welcoming. Each sensation, emotion, and thought is met with an inner "yes," without needing to fix it, fuel it, or push it away. Welcoming is not approving of or agreeing with an experience; it is simply allowing it to be here as you meet it.',
+      'Nothing needs to change. The practice is not about reaching a special state or getting rid of what is unpleasant. It is about being present with what is. Paradoxically, it is this unconditional welcoming — rather than effort or force — that allows things to soften and move on their own.',
+      'Feelings and emotions are messengers. Even difficult states carry useful information, often about an unmet need. Rather than suppressing or being swept away by them, you learn to greet the messenger, receive its message, and let it move through.',
+      'Work with opposites, not against them. Much of iRest holds a state alongside its counter-state — agitation and calm, heaviness and lightness. Sensing both builds equanimity and loosens the grip of being run by either one.',
+      'Being, not only doing. Alongside focused, effortful attention, iRest cultivates effortless resting — simply being the awareness in which experience arises. Both have their place; the practice gradually tips the balance toward being.',
+      'You are the aware witness. Experiences endlessly come and go, but the awareness in which they appear is ever-present and unchanged. Recognizing yourself as this steady, aware presence — rather than as any passing state — is the deepest refuge iRest offers.',
+    ],
+    reflection:
+      'Which of these principles feels most true to you right now — and which one do you most want to test in practice?',
+  },
+  {
     slug: 'the-ten-steps',
     title: 'The Ten Steps, at a glance',
     minutes: 5,

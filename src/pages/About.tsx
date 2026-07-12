@@ -37,11 +37,14 @@ export default function About() {
           .
         </p>
 
-        <h2>Coming later</h2>
+        <h2>Your own recordings</h2>
         <p>
-          A future version will add recorded audio narration for each practice,
-          so you can rest with your eyes closed and simply listen. The app is
-          already built to support this.
+          If you own a set of recorded iRest meditations, the{' '}
+          <strong>Recordings</strong> tab lets you add them from your device and
+          listen with your eyes closed. Titles are read from the filenames, and
+          your audio is saved privately on this device so it works offline. This
+          app does not include, sell, or share any recordings — please add only
+          files you own.
         </p>
 
         <h2>Privacy</h2>
