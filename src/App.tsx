@@ -4,6 +4,7 @@ import Learn from './pages/Learn'
 import LearnModule from './pages/LearnModule'
 import PracticeList from './pages/PracticeList'
 import PracticeSession from './pages/PracticeSession'
+import Recordings from './pages/Recordings'
 import ProgressPage from './pages/ProgressPage'
 import About from './pages/About'
 
@@ -12,6 +13,7 @@ function Nav() {
     { to: '/', label: 'Home', end: true },
     { to: '/learn', label: 'Learn' },
     { to: '/practice', label: 'Practice' },
+    { to: '/recordings', label: 'Audio' },
     { to: '/progress', label: 'Progress' },
     { to: '/about', label: 'About' },
   ]
@@ -41,6 +43,7 @@ export default function App() {
           <Route path="/learn/:slug" element={<LearnModule />} />
           <Route path="/practice" element={<PracticeList />} />
           <Route path="/practice/:slug" element={<PracticeSession />} />
+          <Route path="/recordings" element={<Recordings />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Home />} />
