@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useRecordings } from '../hooks/useRecordings'
 import { formatBytes, formatTime } from '../lib/recordings'
 
@@ -16,6 +17,8 @@ export default function Recordings() {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const autoPlayedRef = useRef(false)
 
   // Enable directory selection where supported (Chromium desktop/Android).
   useEffect(() => {
@@ -57,6 +60,19 @@ export default function Recordings() {
       if (urlRef.current) URL.revokeObjectURL(urlRef.current)
     }
   }, [])
+
+  // Auto-play a track requested via ?play=<trackNumber> (e.g. from a principle
+  // page). If the matching recording hasn't been imported, this is a no-op.
+  useEffect(() => {
+    const play = searchParams.get('play')
+    if (!play || autoPlayedRef.current || recordings.length === 0) return
+    const idx = recordings.findIndex((r) => String(r.num) === play || r.name === play)
+    if (idx >= 0) {
+      autoPlayedRef.current = true
+      void loadTrack(idx)
+      setSearchParams({}, { replace: true })
+    }
+  }, [searchParams, recordings, loadTrack, setSearchParams])
 
   const togglePlay = () => {
     const audio = audioRef.current

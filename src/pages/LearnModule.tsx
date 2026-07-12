@@ -39,6 +39,12 @@ export default function LearnModule() {
         )}
       </div>
 
+      {mod.cta && (
+        <Link className="btn btn--big" to={mod.cta.to}>
+          {mod.cta.label} →
+        </Link>
+      )}
+
       <div className="reading__actions">
         <button
           className={'btn' + (complete ? ' btn--done' : '')}
