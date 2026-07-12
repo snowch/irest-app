@@ -1,11 +1,18 @@
 import { Link } from 'react-router-dom'
-import { modules, practices } from '../data/journey'
+import { modules } from '../data/journey'
 import { useProgress } from '../hooks/useProgress'
+import { useFoundations } from '../hooks/useFoundations'
+import { useRecordings } from '../hooks/useRecordings'
 
 export default function Home() {
   const { progress, streak } = useProgress()
+  const { allComplete, completeCount } = useFoundations()
+  const { recordings } = useRecordings()
+
   const done = progress.completedModules.length
   const nextModule = modules.find((m) => !progress.completedModules.includes(m.slug))
+  const hasRecordings = recordings.length > 0
+  const readyToPractice = allComplete && hasRecordings
 
   return (
     <div className="page page--home">
@@ -38,6 +45,28 @@ export default function Home() {
       </section>
 
       <section className="card-stack">
+        {!readyToPractice && (
+          <Link className="cta-card cta-card--accent" to={allComplete ? '/practice' : '/prepare'}>
+            <span className="cta-card__eyebrow">Get started</span>
+            <span className="cta-card__title">
+              {allComplete ? 'Add your recordings' : 'Set your foundations'}
+            </span>
+            <span className="cta-card__hint">
+              {allComplete
+                ? 'Import your recordings to begin practising'
+                : `Heartfelt Mission, Intention & Inner Resource · ${completeCount}/3 done`}
+            </span>
+          </Link>
+        )}
+
+        {readyToPractice && (
+          <Link className="cta-card cta-card--accent" to="/practice">
+            <span className="cta-card__eyebrow">Practice now</span>
+            <span className="cta-card__title">Your recordings</span>
+            <span className="cta-card__hint">{recordings.length} sessions ready</span>
+          </Link>
+        )}
+
         <Link className="cta-card" to={nextModule ? `/learn/${nextModule.slug}` : '/learn'}>
           <span className="cta-card__eyebrow">Continue learning</span>
           <span className="cta-card__title">
@@ -46,12 +75,6 @@ export default function Home() {
           <span className="cta-card__hint">
             {nextModule ? `${nextModule.minutes} min read` : 'You have read them all'}
           </span>
-        </Link>
-
-        <Link className="cta-card cta-card--accent" to={`/practice/${practices[0].slug}`}>
-          <span className="cta-card__eyebrow">Practice now</span>
-          <span className="cta-card__title">{practices[0].title}</span>
-          <span className="cta-card__hint">{practices[0].minutes} min · self-paced</span>
         </Link>
       </section>
 

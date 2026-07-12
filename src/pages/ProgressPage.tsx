@@ -1,8 +1,9 @@
-import { modules, practices } from '../data/journey'
-import { useProgress } from '../hooks/useProgress'
+import { modules } from '../data/journey'
+import { useProgress, type SessionRecord } from '../hooks/useProgress'
 
-function practiceTitle(slug: string): string {
-  return practices.find((p) => p.slug === slug)?.title ?? slug
+function sessionTitle(s: SessionRecord): string {
+  // Prefer the title captured at completion; fall back to a cleaned id.
+  return s.title ?? s.practiceSlug.replace(/^rec:/, '').replace(/\.[^.]+$/, '')
 }
 
 export default function ProgressPage() {
@@ -37,7 +38,7 @@ export default function ProgressPage() {
         <ul className="history">
           {recent.map((s) => (
             <li key={s.completedAt} className="history__item">
-              <span className="history__title">{practiceTitle(s.practiceSlug)}</span>
+              <span className="history__title">{sessionTitle(s)}</span>
               <span className="history__date">
                 {new Date(s.completedAt).toLocaleDateString(undefined, {
                   weekday: 'short',

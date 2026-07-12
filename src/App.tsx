@@ -1,13 +1,12 @@
 import { useEffect, useRef } from 'react'
-import { NavLink, Route, Routes } from 'react-router-dom'
+import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Learn from './pages/Learn'
 import LearnModule from './pages/LearnModule'
 import Principles from './pages/Principles'
 import PrincipleDetail from './pages/PrincipleDetail'
-import PracticeList from './pages/PracticeList'
-import PracticeSession from './pages/PracticeSession'
-import Recordings from './pages/Recordings'
+import Prepare from './pages/Prepare'
+import Practice from './pages/Practice'
 import ProgressPage from './pages/ProgressPage'
 import About from './pages/About'
 
@@ -15,8 +14,8 @@ function Nav() {
   const tabs = [
     { to: '/', label: 'Home', end: true },
     { to: '/learn', label: 'Learn' },
+    { to: '/prepare', label: 'Prepare' },
     { to: '/practice', label: 'Practice' },
-    { to: '/recordings', label: 'Audio' },
     { to: '/progress', label: 'Progress' },
     { to: '/about', label: 'About' },
   ]
@@ -65,9 +64,10 @@ export default function App() {
           <Route path="/learn/:slug" element={<LearnModule />} />
           <Route path="/principles" element={<Principles />} />
           <Route path="/principles/:slug" element={<PrincipleDetail />} />
-          <Route path="/practice" element={<PracticeList />} />
-          <Route path="/practice/:slug" element={<PracticeSession />} />
-          <Route path="/recordings" element={<Recordings />} />
+          <Route path="/prepare" element={<Prepare />} />
+          <Route path="/practice" element={<Practice />} />
+          {/* Legacy links from earlier versions */}
+          <Route path="/recordings" element={<Navigate to="/practice" replace />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/about" element={<About />} />
           <Route path="*" element={<Home />} />
