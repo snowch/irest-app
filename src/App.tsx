@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { NavLink, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Learn from './pages/Learn'
@@ -19,8 +20,27 @@ function Nav() {
     { to: '/progress', label: 'Progress' },
     { to: '/about', label: 'About' },
   ]
+  // Publish the tab bar's real height (including safe-area padding) as a CSS
+  // variable so the fixed player bar can sit exactly on top of it, regardless
+  // of device chrome.
+  const navRef = useRef<HTMLElement>(null)
+  useEffect(() => {
+    const el = navRef.current
+    if (!el) return
+    const set = () =>
+      document.documentElement.style.setProperty('--tabbar-h', `${el.offsetHeight}px`)
+    set()
+    const ro = new ResizeObserver(set)
+    ro.observe(el)
+    window.addEventListener('resize', set)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', set)
+    }
+  }, [])
+
   return (
-    <nav className="tabbar" aria-label="Primary">
+    <nav ref={navRef} className="tabbar" aria-label="Primary">
       {tabs.map((t) => (
         <NavLink
           key={t.to}
