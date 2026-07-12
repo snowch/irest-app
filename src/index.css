@@ -659,6 +659,112 @@ a {
   border-color: color-mix(in srgb, var(--good) 40%, var(--line));
 }
 
+/* ---- Principles ---- */
+.principle-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 10px;
+}
+.principle-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--ink);
+}
+.principle-card__num {
+  flex: 0 0 auto;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
+}
+.principle-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.principle-card__title {
+  font-weight: 700;
+}
+.principle-card__summary {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+/* ---- Related recordings on a principle page ---- */
+.rec-links {
+  list-style: none;
+  padding: 0;
+  margin: 0.6rem 0 0;
+  display: grid;
+  gap: 8px;
+}
+.rec-link {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg-elev);
+  font: inherit;
+  text-align: left;
+  color: var(--ink);
+}
+.rec-link--available {
+  cursor: pointer;
+  border-color: color-mix(in srgb, var(--brand) 35%, var(--line));
+}
+.rec-link--missing {
+  color: var(--ink-faint);
+}
+.rec-link__icon {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.7rem;
+  background: color-mix(in srgb, var(--brand) 12%, transparent);
+  color: var(--brand);
+}
+.rec-link--missing .rec-link__icon {
+  background: var(--line);
+  color: var(--ink-faint);
+}
+.rec-link__title {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.92rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.rec-link__add {
+  flex: 0 0 auto;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--brand);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
 /* ---- Recordings: import ---- */
 .import-card {
   background: var(--bg-elev);

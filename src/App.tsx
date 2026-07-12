@@ -2,6 +2,8 @@ import { NavLink, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Learn from './pages/Learn'
 import LearnModule from './pages/LearnModule'
+import Principles from './pages/Principles'
+import PrincipleDetail from './pages/PrincipleDetail'
 import PracticeList from './pages/PracticeList'
 import PracticeSession from './pages/PracticeSession'
 import Recordings from './pages/Recordings'
@@ -41,6 +43,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/learn" element={<Learn />} />
           <Route path="/learn/:slug" element={<LearnModule />} />
+          <Route path="/principles" element={<Principles />} />
+          <Route path="/principles/:slug" element={<PrincipleDetail />} />
           <Route path="/practice" element={<PracticeList />} />
           <Route path="/practice/:slug" element={<PracticeSession />} />
           <Route path="/recordings" element={<Recordings />} />

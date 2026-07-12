@@ -14,6 +14,8 @@ export interface Module {
   body: string[]
   /** Optional short reflection prompt to close the module. */
   reflection?: string
+  /** Optional call-to-action link rendered at the end of the module. */
+  cta?: { label: string; to: string }
 }
 
 export interface Stage {
@@ -78,6 +80,7 @@ export const modules: Module[] = [
     ],
     reflection:
       'Which of these principles feels most true to you right now — and which one do you most want to test in practice?',
+    cta: { label: 'Explore each principle', to: '/principles' },
   },
   {
     slug: 'the-ten-steps',
