@@ -40,6 +40,12 @@ export interface Practice {
   level: 'Foundational' | 'Core' | 'Extended'
   intro: string
   stages: Stage[]
+  /**
+   * Track number of a full-length recording that pairs with this practice.
+   * If the user has imported that file, the practice offers a "play the
+   * recording" option (the recorded sets are whole sessions, not per-step).
+   */
+  recordingTrack?: number
 }
 
 // ---------------------------------------------------------------------------
@@ -168,6 +174,7 @@ export const practices: Practice[] = [
     subtitle: 'A short, gentle introduction',
     minutes: 6,
     level: 'Foundational',
+    recordingTrack: 37, // "8 min iRest"
     intro:
       'A brief practice to taste the feeling of iRest. Find a comfortable position, and let the words guide you at their own unhurried pace.',
     stages: [
@@ -257,6 +264,7 @@ export const practices: Practice[] = [
     subtitle: 'A complete pass through the full framework',
     minutes: 18,
     level: 'Core',
+    recordingTrack: 38, // "20 min iRest"
     intro:
       'This longer practice moves through all ten movements of iRest. Settle in somewhere you will not be disturbed, and let each step unfold without hurry.',
     stages: [
@@ -381,6 +389,7 @@ export const practices: Practice[] = [
     subtitle: 'A 3-minute refuge for busy moments',
     minutes: 3,
     level: 'Foundational',
+    recordingTrack: 7, // "Inner Resource Meditation"
     intro:
       'A very short practice to strengthen and return to your Inner Resource. Perfect between meetings or whenever you need to steady yourself.',
     stages: [
