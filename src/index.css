@@ -718,6 +718,11 @@ a {
   display: grid;
   gap: 8px;
 }
+/* Grid children default to min-width:auto, which lets a long no-wrap title
+   push the row wider than the screen. Constrain them to the track width. */
+.rec-links li {
+  min-width: 0;
+}
 .rec-link {
   width: 100%;
   display: flex;
@@ -757,9 +762,12 @@ a {
   flex: 1;
   min-width: 0;
   font-size: 0.92rem;
-  white-space: nowrap;
+  /* wrap to at most two lines, then ellipsis — never overflow the row */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .rec-link__add {
   flex: 0 0 auto;
@@ -842,6 +850,9 @@ a {
   display: grid;
   gap: 6px;
 }
+.track-list li {
+  min-width: 0;
+}
 .track {
   width: 100%;
   display: flex;
@@ -880,9 +891,11 @@ a {
 }
 .track__title {
   font-weight: 600;
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 .track__meta {
   font-size: 0.75rem;
