@@ -6,7 +6,10 @@ import { useCallback, useEffect, useState } from 'react'
 const STORAGE_KEY = 'irest-progress-v1'
 
 export interface SessionRecord {
+  /** Stable id of what was practised (e.g. `rec:05 …mp3`). */
   practiceSlug: string
+  /** Display title captured at completion time. */
+  title?: string
   /** ISO date string (yyyy-mm-dd) the session was completed. */
   date: string
   completedAt: number
@@ -111,7 +114,7 @@ export function useProgress() {
     [],
   )
 
-  const recordSession = useCallback((practiceSlug: string) => {
+  const recordSession = useCallback((practiceSlug: string, title?: string) => {
     setProgress((prev) => {
       const next: Progress = {
         ...prev,
@@ -119,6 +122,7 @@ export function useProgress() {
           ...prev.sessions,
           {
             practiceSlug,
+            title,
             date: todayIso(),
             completedAt: Date.now(),
           },

@@ -1,9 +1,7 @@
-// The learning-and-practice journey content.
+// Learn: the concepts behind iRest.
 //
-// This is intentionally data-driven so that content can grow over time without
-// touching UI code. In particular, each practice `Stage` has an optional
-// `audioUrl` field: today it is undefined (text-guided only), and a future
-// version can point it at a recorded session with no other changes required.
+// Data-driven so content can grow without touching UI code. (Practice is now
+// driven by the user's own imported recordings — see the Practice page.)
 
 export interface Module {
   slug: string
@@ -18,40 +16,6 @@ export interface Module {
   cta?: { label: string; to: string }
 }
 
-export interface Stage {
-  key: string
-  title: string
-  /** Short label used in the stepper. */
-  label: string
-  /** Guidance shown to the practitioner, one line/paragraph per entry. */
-  guidance: string[]
-  /** Suggested duration in seconds for the self-paced timer. */
-  seconds: number
-  /** Future: URL to a recorded narration for this stage. */
-  audioUrl?: string
-}
-
-export interface Practice {
-  slug: string
-  title: string
-  subtitle: string
-  /** Total approx minutes (derived, but stored for quick display). */
-  minutes: number
-  level: 'Foundational' | 'Core' | 'Extended'
-  intro: string
-  stages: Stage[]
-  /**
-   * Track number of a full-length recording that pairs with this practice.
-   * If the user has imported that file, the practice offers a "play the
-   * recording" option (the recorded sets are whole sessions, not per-step).
-   */
-  recordingTrack?: number
-}
-
-// ---------------------------------------------------------------------------
-// Learn: the concepts behind iRest
-// ---------------------------------------------------------------------------
-
 export const modules: Module[] = [
   {
     slug: 'what-is-irest',
@@ -63,7 +27,7 @@ export const modules: Module[] = [
       'iRest — short for Integrative Restoration — is a research-informed form of meditation adapted from the ancient practice of Yoga Nidra, often described as "yogic sleep." It was developed by Richard Miller, PhD, and is taught today through the Integrative Restoration Institute.',
       'Unlike practices that ask you to concentrate hard or empty the mind, iRest invites a posture of welcoming. Whatever arises — a sensation, a feeling, a thought — is met with curiosity rather than resistance. Nothing has to change for the practice to work.',
       'The practice is usually done lying down or seated comfortably, with the eyes closed. You stay in a state the tradition calls "being awake while deeply relaxed" — restful, yet aware.',
-      'This app teaches the framework and lets you practice it at your own pace with written guidance. It is an educational companion, not a substitute for a trained iRest teacher or for the official recordings and courses offered by the Integrative Restoration Institute.',
+      'This app teaches the framework and lets you practice it with recorded guidance. It is an educational companion, not a substitute for a trained iRest teacher or for the official recordings and courses offered by the Integrative Restoration Institute.',
     ],
     reflection:
       'Before you continue: what drew you to want to learn a practice like this?',
@@ -106,7 +70,7 @@ export const modules: Module[] = [
       '8. Joy & Well-Being — allowing a sense of underlying ease and gladness.',
       '9. Awareness Itself — resting as the aware presence in which everything appears.',
       '10. Reflection & Integration — carrying the practice gently back into daily life.',
-      'You do not need to master these one at a time. The guided practices in this app move through them for you; over time the map becomes familiar.',
+      'You do not need to master these one at a time. The guided recordings move through them for you; over time the map becomes familiar.',
     ],
   },
   {
@@ -118,10 +82,11 @@ export const modules: Module[] = [
     body: [
       'An Intention is a simple statement of what you are here to do — for example, "I intend to rest and be present." Held lightly at the start of practice, it orients the mind like setting a compass before a walk.',
       'A Heartfelt Desire (sometimes called your deepest longing) is different. It is not about a task; it is the underlying yearning of your life — perhaps for peace, for wholeness, for connection. In iRest you sense it as if it were already true, feeling it in the body rather than only thinking it.',
-      'Both are affirmations you form in your own words. There is no correct wording — what matters is that the statement feels genuine when you rest your attention on it.',
+      'Both are affirmations you form in your own words. There is no correct wording — what matters is that the statement feels genuine when you rest your attention on it. You can set yours in the Prepare tab.',
     ],
     reflection:
       'If you had to put your deepest longing into one short sentence, what might it be?',
+    cta: { label: 'Set your foundations', to: '/prepare' },
   },
   {
     slug: 'inner-resource',
@@ -162,284 +127,6 @@ export const modules: Module[] = [
     ],
   },
 ]
-
-// ---------------------------------------------------------------------------
-// Practice: self-paced guided sessions
-// ---------------------------------------------------------------------------
-
-export const practices: Practice[] = [
-  {
-    slug: 'first-rest',
-    title: 'A First Rest',
-    subtitle: 'A short, gentle introduction',
-    minutes: 6,
-    level: 'Foundational',
-    recordingTrack: 37, // "8 min iRest"
-    intro:
-      'A brief practice to taste the feeling of iRest. Find a comfortable position, and let the words guide you at their own unhurried pace.',
-    stages: [
-      {
-        key: 'settle',
-        label: 'Settle',
-        title: 'Settling In',
-        seconds: 45,
-        guidance: [
-          'Let yourself arrive. Allow your body to be supported by whatever is beneath you.',
-          'There is nowhere to go and nothing to achieve in these few minutes.',
-          'Let the eyes close, or soften your gaze downward.',
-        ],
-      },
-      {
-        key: 'intention',
-        label: 'Intention',
-        title: 'Setting an Intention',
-        seconds: 40,
-        guidance: [
-          'Silently affirm a simple intention for this practice.',
-          'Perhaps: "I intend to rest, and to be present with whatever is here."',
-          'Feel the intention settle in, like a stone coming to rest at the bottom of a still pond.',
-        ],
-      },
-      {
-        key: 'resource',
-        label: 'Resource',
-        title: 'Inner Resource',
-        seconds: 60,
-        guidance: [
-          'Bring to mind a place or memory where you feel completely safe and at ease.',
-          'Notice the felt sense of well-being it brings — perhaps warmth, spaciousness, or calm.',
-          'Know that this feeling is always available to you. You can return here any time.',
-        ],
-      },
-      {
-        key: 'body',
-        label: 'Body',
-        title: 'Body Sensing',
-        seconds: 90,
-        guidance: [
-          'Gently move your awareness through the body.',
-          'Sense the weight of the head... the softening of the face and jaw... the shoulders releasing down.',
-          'The arms and hands... the chest and belly rising and falling... the hips, the legs, the feet.',
-          'No need to change anything. Simply feel the body as it is.',
-        ],
-      },
-      {
-        key: 'breath',
-        label: 'Breath',
-        title: 'Breath Sensing',
-        seconds: 60,
-        guidance: [
-          'Let your attention rest on the natural movement of the breath.',
-          'Feel the cool inflow... and the warm, releasing outflow.',
-          'You are not controlling the breath — simply being breathed.',
-        ],
-      },
-      {
-        key: 'rest',
-        label: 'Rest',
-        title: 'Resting in Awareness',
-        seconds: 45,
-        guidance: [
-          'For a few moments, let go of any effort at all.',
-          'Rest as the simple awareness in which sensations, sounds, and thoughts come and go.',
-          'Nothing to do. Nowhere to be. Just this.',
-        ],
-      },
-      {
-        key: 'return',
-        label: 'Return',
-        title: 'Reflection & Return',
-        seconds: 40,
-        guidance: [
-          'Begin to sense the room around you, the support beneath you.',
-          'Take a fuller breath, and let a little movement return to the fingers and toes.',
-          'As you open your eyes, carry this sense of ease with you into whatever comes next.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'ten-tools',
-    title: 'The Ten Tools',
-    subtitle: 'A complete pass through the full framework',
-    minutes: 18,
-    level: 'Core',
-    recordingTrack: 38, // "20 min iRest"
-    intro:
-      'This longer practice moves through all ten movements of iRest. Settle in somewhere you will not be disturbed, and let each step unfold without hurry.',
-    stages: [
-      {
-        key: 'settle',
-        label: 'Settle',
-        title: 'Settling In',
-        seconds: 60,
-        guidance: [
-          'Arrive fully. Let the body be completely supported.',
-          'Allow a few slower breaths, and let the eyes close.',
-        ],
-      },
-      {
-        key: 'intention',
-        label: 'Intention',
-        title: '1. Intention',
-        seconds: 60,
-        guidance: [
-          'Affirm your intention for this practice in your own words.',
-          'Hold it lightly, feeling its truth in the body.',
-        ],
-      },
-      {
-        key: 'desire',
-        label: 'Desire',
-        title: '2. Heartfelt Desire',
-        seconds: 75,
-        guidance: [
-          'Sense your deepest longing — for peace, wholeness, or ease.',
-          'Affirm it as if it were already true, feeling it fill the body.',
-        ],
-      },
-      {
-        key: 'resource',
-        label: 'Resource',
-        title: '3. Inner Resource',
-        seconds: 90,
-        guidance: [
-          'Return to your inner place of safety and well-being.',
-          'Let its calm suffuse you. This is your refuge, always available.',
-        ],
-      },
-      {
-        key: 'body',
-        label: 'Body',
-        title: '4. Body Sensing',
-        seconds: 150,
-        guidance: [
-          'Rotate awareness slowly through the body — mouth, throat, shoulders, arms, hands.',
-          'The chest and belly... the back... the hips, legs, and feet.',
-          'Sense the whole body at once, held in awareness, exactly as it is.',
-        ],
-      },
-      {
-        key: 'breath',
-        label: 'Breath',
-        title: '5. Breath Sensing',
-        seconds: 90,
-        guidance: [
-          'Feel the breath moving freely, without effort.',
-          'Sense the subtle flow of energy and aliveness through the body.',
-        ],
-      },
-      {
-        key: 'feelings',
-        label: 'Feelings',
-        title: '6. Feelings & Emotions',
-        seconds: 120,
-        guidance: [
-          'Welcome whatever feeling is present, and where you sense it in the body.',
-          'Now sense its opposite. Then, if it feels right, hold both together.',
-          'Let feelings come and go like weather across an open sky.',
-        ],
-      },
-      {
-        key: 'thoughts',
-        label: 'Thoughts',
-        title: '7. Thoughts & Beliefs',
-        seconds: 105,
-        guidance: [
-          'Notice thoughts arising and dissolving, without following them.',
-          'If a belief appears, sense it — and then its opposite — with the same open curiosity.',
-        ],
-      },
-      {
-        key: 'joy',
-        label: 'Joy',
-        title: '8. Joy & Well-Being',
-        seconds: 90,
-        guidance: [
-          'Invite a sense of underlying ease, contentment, or quiet gladness.',
-          'You need not manufacture it — simply allow whatever warmth is here to be felt.',
-        ],
-      },
-      {
-        key: 'awareness',
-        label: 'Awareness',
-        title: '9. Awareness Itself',
-        seconds: 120,
-        guidance: [
-          'Let go of all effort. Rest as awareness itself.',
-          'Everything — sensation, feeling, thought — appears and disappears within this open, aware presence that you are.',
-        ],
-      },
-      {
-        key: 'reflect',
-        label: 'Reflect',
-        title: '10. Reflection & Integration',
-        seconds: 90,
-        guidance: [
-          'Gently reflect on your experience, without analysis.',
-          'Sense how this ease might travel with you into daily life.',
-          'Slowly reawaken the body, and when you are ready, open your eyes.',
-        ],
-      },
-    ],
-  },
-  {
-    slug: 'inner-resource-mini',
-    title: 'Inner Resource Reset',
-    subtitle: 'A 3-minute refuge for busy moments',
-    minutes: 3,
-    level: 'Foundational',
-    recordingTrack: 7, // "Inner Resource Meditation"
-    intro:
-      'A very short practice to strengthen and return to your Inner Resource. Perfect between meetings or whenever you need to steady yourself.',
-    stages: [
-      {
-        key: 'pause',
-        label: 'Pause',
-        title: 'Pause',
-        seconds: 30,
-        guidance: [
-          'Wherever you are, pause. You can keep your eyes open or closed.',
-          'Take one slow breath, and feel your feet or your seat.',
-        ],
-      },
-      {
-        key: 'recall',
-        label: 'Recall',
-        title: 'Recall Your Resource',
-        seconds: 60,
-        guidance: [
-          'Bring to mind your place of safety and ease.',
-          'Let the felt sense of it arrive in the body — warmth, steadiness, calm.',
-        ],
-      },
-      {
-        key: 'soak',
-        label: 'Soak',
-        title: 'Soak It In',
-        seconds: 45,
-        guidance: [
-          'Rest here for a few breaths, letting the feeling deepen.',
-          'This calm is yours. It travels with you.',
-        ],
-      },
-      {
-        key: 'carry',
-        label: 'Carry',
-        title: 'Carry It Forward',
-        seconds: 25,
-        guidance: [
-          'Take one more slow breath.',
-          'Return to your day, bringing a little of this ease with you.',
-        ],
-      },
-    ],
-  },
-]
-
-export function getPractice(slug: string): Practice | undefined {
-  return practices.find((p) => p.slug === slug)
-}
 
 export function getModule(slug: string): Module | undefined {
   return modules.find((m) => m.slug === slug)

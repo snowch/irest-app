@@ -49,7 +49,7 @@ export default function PrincipleDetail() {
             {r.available ? (
               <button
                 className="rec-link rec-link--available"
-                onClick={() => navigate(`/recordings?play=${r.num}`)}
+                onClick={() => navigate(`/practice?play=${r.num}`)}
               >
                 <span className="rec-link__icon" aria-hidden="true">▶</span>
                 <span className="rec-link__title">
@@ -62,14 +62,14 @@ export default function PrincipleDetail() {
                 <span className="rec-link__title">
                   {String(r.num).padStart(2, '0')} · {r.title}
                 </span>
-                <Link to="/recordings" className="rec-link__add">Add</Link>
+                <Link to="/practice" className="rec-link__add">Add</Link>
               </div>
             )}
           </li>
         ))}
       </ul>
       <p className="soft-note" style={{ textAlign: 'left' }}>
-        Recordings play in the Audio tab. They are yours, stored privately on
+        Recordings play in the Practice tab. They are yours, stored privately on
         this device — this app includes no audio of its own.
       </p>
 
