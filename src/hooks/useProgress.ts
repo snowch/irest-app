@@ -33,9 +33,14 @@ function load(): Progress {
   }
 }
 
+// Fired after every save so other useProgress instances in this same tab
+// resync immediately (the native `storage` event only fires in *other* tabs).
+const CHANGE_EVENT = 'irest-progress-change'
+
 function save(p: Progress) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(p))
+    window.dispatchEvent(new Event(CHANGE_EVENT))
   } catch {
     // storage full or unavailable — fail quietly
   }
@@ -71,13 +76,19 @@ function computeStreak(sessions: SessionRecord[]): number {
 export function useProgress() {
   const [progress, setProgress] = useState<Progress>(load)
 
-  // Keep multiple tabs in sync.
+  // Keep every instance in sync — across tabs (storage) and within this tab
+  // (custom event), so a reset on one page updates all pages live.
   useEffect(() => {
+    const resync = () => setProgress(load())
     const onStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEY) setProgress(load())
+      if (e.key === STORAGE_KEY) resync()
     }
     window.addEventListener('storage', onStorage)
-    return () => window.removeEventListener('storage', onStorage)
+    window.addEventListener(CHANGE_EVENT, resync)
+    return () => {
+      window.removeEventListener('storage', onStorage)
+      window.removeEventListener(CHANGE_EVENT, resync)
+    }
   }, [])
 
   const persist = useCallback((next: Progress) => {
