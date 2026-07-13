@@ -15,6 +15,10 @@ export interface Principle {
   body: string[]
   /** Track numbers of recordings that relate to this principle. */
   relatedTracks: number[]
+  /** Optional illustrative image, relative to the app base (in /public). */
+  image?: string
+  /** Alt text describing the image for screen readers. */
+  imageAlt?: string
 }
 
 export const principles: Principle[] = [
@@ -28,6 +32,9 @@ export const principles: Principle[] = [
       'Over time this reorients how you meet hard moments. Instead of chasing a better state, you remember the ground of well-being that was never actually missing.',
     ],
     relatedTracks: [6, 7, 20, 36, 24],
+    image: 'principles/underlying-well-being.webp',
+    imageAlt:
+      'An ocean diagram: at the surface, weather (worry, stress, sadness, confusion, joy, excitement) representing passing thoughts, emotions, and sensations; beneath it the calm deep water labelled underlying well-being — steady, spacious, whole. The Inner Resource and the practice of turning toward it point to the depths. Key insight: well-being is the ground; you are the sky.',
   },
   {
     slug: 'welcome-everything',
