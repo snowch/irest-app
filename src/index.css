@@ -902,6 +902,64 @@ a {
   color: var(--ink-soft);
 }
 
+/* ---- Principle illustrative image ---- */
+.principle-figure {
+  margin: 1.4rem 0 0.5rem;
+}
+.principle-figure__btn {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #fff;
+  cursor: zoom-in;
+}
+.principle-figure__btn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.principle-figure figcaption {
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 6px;
+}
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  cursor: zoom-out;
+  animation: fade 0.2s ease;
+}
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+}
+.lightbox__close {
+  position: fixed;
+  top: calc(env(safe-area-inset-top) + 12px);
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
 /* ---- Related recordings on a principle page ---- */
 .rec-links {
   list-style: none;
