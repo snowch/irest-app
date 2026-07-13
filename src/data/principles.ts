@@ -60,6 +60,9 @@ export const principles: Principle[] = [
       'Curiously, letting go of the demand to change is often what allows genuine change to happen. Ease arrives not by effort, but by permission.',
     ],
     relatedTracks: [9, 10, 11, 26, 27],
+    image: 'principles/nothing-needs-to-change.webp',
+    imageAlt:
+      'A diagram of a path with a “you are here” marker already at the destination, while a flag labelled “a better state to chase” further along is crossed out. You are not doing it wrong by feeling restless; you are simply present with what is. Paradoxically, letting go of the demand to change is what allows change to happen — ease arrives by permission, not effort.',
   },
   {
     slug: 'feelings-are-messengers',
@@ -71,6 +74,9 @@ export const principles: Principle[] = [
       'Met this way, even difficult emotions become workable. They come and go like weather, and you remain the open sky in which they move.',
     ],
     relatedTracks: [2, 16, 17, 21],
+    image: 'principles/feelings-are-messengers.webp',
+    imageAlt:
+      'A diagram showing a feeling arriving, an envelope carrying a message, and the feeling moving on once received. A feeling is not a problem to remove but a messenger carrying information — often an unmet need. Rather than suppressing it or being swept away by it, turn toward it with curiosity: where do I feel it, and what is it here to tell me? Met this way, feelings come and go like weather while you remain the open sky.',
   },
   {
     slug: 'work-with-opposites',
@@ -82,6 +88,9 @@ export const principles: Principle[] = [
       'Holding opposites gently loosens the mind’s habit of grasping one state and pushing another away. What grows in its place is equanimity — the capacity to stay steady and open whatever is present.',
     ],
     relatedTracks: [18, 19, 22, 15],
+    image: 'principles/work-with-opposites.webp',
+    imageAlt:
+      'A diagram of a level balance holding opposite states together: tension, heaviness, and sadness on one side; ease, lightness, and joy on the other. You sense one side fully, then its opposite, then both together — a felt experiment, not analysis. This loosens the mind’s habit of grasping one state and pushing the other away, and what grows is equanimity: staying steady and open whatever is present. You don’t have to pick a side.',
   },
   {
     slug: 'being-not-doing',
@@ -93,6 +102,9 @@ export const principles: Principle[] = [
       'This isn’t laziness; it’s balance. Returning to being restores what constant doing depletes, and it’s available in the middle of an ordinary day, not only in formal practice.',
     ],
     relatedTracks: [29, 31, 32, 38],
+    image: 'principles/being-not-doing.webp',
+    imageAlt:
+      'A diagram contrasting two modes: “doing” (a busy, spinning circle — planning and fixing) and “being” (a still, calm circle — resting as awareness), held in balance. Most of life is spent doing; iRest makes room for the other half. Doing is necessary but depletes when it never pauses, while being is effortless — simply resting as the awareness in which experience arises, with nothing to accomplish. Not laziness but balance: nothing to achieve, just be.',
   },
   {
     slug: 'aware-witness',
@@ -104,6 +116,9 @@ export const principles: Principle[] = [
       'This is the deepest refuge iRest offers: recognizing yourself as the ever-present awareness that was never actually disturbed by anything that came and went.',
     ],
     relatedTracks: [30, 33, 34, 35, 36],
+    image: 'principles/aware-witness.webp',
+    imageAlt:
+      'A diagram of passing states — a thought, an emotion, a sensation, a mood — drifting above a steady band labelled “awareness, ever-present, unchanged.” Everything you experience is always coming and going, but the awareness in which it all appears does not change. Resting as this aware presence is the deepest refuge: states may be stormy, but awareness itself is untroubled. States come and go; the one aware of them remains.',
   },
 ]
 
