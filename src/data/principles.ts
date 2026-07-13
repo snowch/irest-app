@@ -46,6 +46,9 @@ export const principles: Principle[] = [
       'Paradoxically, this is what allows things to move. What is fully met tends to soften and release on its own, without you having to fix or force anything.',
     ],
     relatedTracks: [16, 21, 17, 22, 28],
+    image: 'principles/welcome-everything.webp',
+    imageAlt:
+      'A diagram of an open doorway with the word “yes” glowing in the opening. On the left, experiences arrive — sensation, emotion, thought, and resistance; on the right they leave softened — softening, passing, easing. Welcoming is not liking, approving, or agreeing; it is dropping the war with your experience and letting it be as it is. What is fully met softens and releases on its own; even resistance is welcome.',
   },
   {
     slug: 'nothing-needs-to-change',
