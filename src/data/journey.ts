@@ -14,6 +14,11 @@ export interface Module {
   reflection?: string
   /** Optional call-to-action link rendered at the end of the module. */
   cta?: { label: string; to: string }
+  /** Optional illustrative image, relative to the app base (in /public). */
+  image?: string
+  imageAlt?: string
+  /** Optional caption shown under the image. */
+  imageCaption?: string
 }
 
 export const modules: Module[] = [
@@ -59,19 +64,25 @@ export const modules: Module[] = [
     summary:
       'iRest unfolds through ten movements of awareness — a map you will return to again and again.',
     body: [
-      'iRest is often taught as a sequence of ten steps or "tools." They are not a rigid ladder to climb; think of them as movements of awareness that gradually open different dimensions of your experience.',
-      '1. Intention — affirming your reason for practicing right now.',
-      '2. Heartfelt Desire — sensing your deepest longing for well-being.',
-      '3. Inner Resource — establishing an inner place of safety, ease, and security.',
-      '4. Body Sensing — rotating awareness through the body to release and settle.',
-      '5. Breath Sensing — feeling the natural movement of breath and energy.',
-      '6. Feelings & Emotions — welcoming feelings and their opposites without judgment.',
-      '7. Thoughts & Beliefs — noticing thoughts and the beliefs beneath them.',
-      '8. Joy & Well-Being — allowing a sense of underlying ease and gladness.',
-      '9. Awareness Itself — resting as the aware presence in which everything appears.',
-      '10. Reflection & Integration — carrying the practice gently back into daily life.',
+      'iRest is often taught as a sequence of ten steps or "tools." They are not a rigid ladder to climb; they relate to one another by role, not just order — as the map below shows.',
+      '1. Heartfelt Mission — the compass. Your enduring longing, felt as if already true; it sets true north.',
+      '2. Intention — the banks. Your aim for this session, chosen in service of the mission, channelling the flow toward where the compass already points.',
+      '3. Inner Resource — the anchor. An inner place of safety you can drop back into from any layer, in a sit or mid-crisis.',
+      '4. Body Sensing — the outermost layer softens and releases.',
+      '5. Breath Sensing — breath sensed as living energy.',
+      '6. Feelings & Emotions — each feeling met together with its opposite.',
+      '7. Thoughts & Beliefs — thoughts witnessed, opposites held.',
+      '8. Joy & Well-Being — a sense of underlying ease radiating through the body.',
+      '9. Awareness Itself — the still centre; layers 4–8 happen within it, not before it.',
+      '10. Integration — the return, carrying the centre back into daily life; it loops back to the mission you set at the start.',
       'You do not need to master these one at a time. The guided recordings move through them for you; over time the map becomes familiar.',
+      'The map draws on the traditional five-kosha (sheath) model and on Richard Miller’s compass and river-banks framing of the protocol.',
     ],
+    image: 'figures/ten-steps-map.webp',
+    imageAlt:
+      'A relational map of the ten steps: the Heartfelt Mission as a compass at the top pointing true north; Intention as river-banks channelling the flow inward; concentric layers 4–8 (body, breath, emotions, thoughts, joy) nested around a glowing still centre, 9 Awareness; the Inner Resource (3) as an anchor at the lower left reaching every layer; and Integration (10) as an arrow returning outward into daily life, looping back to the mission. Steps 6 and 7 hold opposites at once.',
+    imageCaption:
+      'The steps as relationships: mission orients, intention channels, the layers nest into awareness at the centre, and integration carries it back into daily life.',
   },
   {
     slug: 'intention-and-desire',

@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { catalogTitle, getPrinciple, principles } from '../data/principles'
 import { useRecordings } from '../hooks/useRecordings'
+import Figure from '../components/Figure'
 
 export default function PrincipleDetail() {
   const { slug = '' } = useParams()
   const navigate = useNavigate()
   const { recordings } = useRecordings()
-  const [zoomed, setZoomed] = useState(false)
   const principle = getPrinciple(slug)
 
   if (!principle) {
@@ -45,37 +44,7 @@ export default function PrincipleDetail() {
       </div>
 
       {principle.image && (
-        <figure className="principle-figure">
-          <button
-            type="button"
-            className="principle-figure__btn"
-            onClick={() => setZoomed(true)}
-            aria-label="Enlarge diagram"
-          >
-            <img
-              src={`${import.meta.env.BASE_URL}${principle.image}`}
-              alt={principle.imageAlt ?? ''}
-              loading="lazy"
-            />
-          </button>
-          <figcaption>Tap the diagram to enlarge</figcaption>
-        </figure>
-      )}
-
-      {zoomed && principle.image && (
-        <div
-          className="lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label={principle.imageAlt ?? 'Diagram'}
-          onClick={() => setZoomed(false)}
-        >
-          <button className="lightbox__close" aria-label="Close">✕</button>
-          <img
-            src={`${import.meta.env.BASE_URL}${principle.image}`}
-            alt={principle.imageAlt ?? ''}
-          />
-        </div>
+        <Figure src={principle.image} alt={principle.imageAlt} />
       )}
 
       <h2 className="section-title">Related recordings</h2>
