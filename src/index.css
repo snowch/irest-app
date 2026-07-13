@@ -1019,6 +1019,13 @@ a {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.rec-link__len {
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-faint);
+  font-variant-numeric: tabular-nums;
+}
 .rec-link__add {
   flex: 0 0 auto;
   font-size: 0.75rem;

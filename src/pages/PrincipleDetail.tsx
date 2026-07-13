@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { catalogTitle, getPrinciple, principles } from '../data/principles'
 import { useRecordings } from '../hooks/useRecordings'
+import { formatLength } from '../lib/recordings'
 import Figure from '../components/Figure'
 
 export default function PrincipleDetail() {
@@ -29,6 +30,7 @@ export default function PrincipleDetail() {
       title: imported?.title ?? catalogTitle(num),
       available: Boolean(imported),
       name: imported?.name,
+      length: formatLength(imported?.duration),
     }
   })
 
@@ -60,6 +62,7 @@ export default function PrincipleDetail() {
                 <span className="rec-link__title">
                   {String(r.num).padStart(2, '0')} · {r.title}
                 </span>
+                {r.length && <span className="rec-link__len">{r.length}</span>}
               </button>
             ) : (
               <div className="rec-link rec-link--missing">

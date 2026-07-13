@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 import { useRecordings } from '../hooks/useRecordings'
 import { useFoundations } from '../hooks/useFoundations'
 import { useProgress } from '../hooks/useProgress'
-import { formatBytes, formatTime } from '../lib/recordings'
+import { formatBytes, formatLength, formatTime } from '../lib/recordings'
 
 export default function Practice() {
   const { recordings, importing, usage, importFiles, removeAll, getUrl } =
@@ -210,7 +210,11 @@ export default function Practice() {
                 </span>
                 <span className="track__body">
                   <span className="track__title">{rec.title}</span>
-                  <span className="track__meta">{formatBytes(rec.size)}</span>
+                  <span className="track__meta">
+                    {[formatLength(rec.duration), formatBytes(rec.size)]
+                      .filter(Boolean)
+                      .join(' · ')}
+                  </span>
                 </span>
               </button>
             </li>
