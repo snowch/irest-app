@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getModule, modules } from '../data/journey'
 import { useProgress } from '../hooks/useProgress'
+import Figure from '../components/Figure'
 
 export default function LearnModule() {
   const { slug = '' } = useParams()
@@ -38,6 +39,10 @@ export default function LearnModule() {
           </blockquote>
         )}
       </div>
+
+      {mod.image && (
+        <Figure src={mod.image} alt={mod.imageAlt} caption={mod.imageCaption} />
+      )}
 
       {mod.cta && (
         <Link className="btn btn--big" to={mod.cta.to}>

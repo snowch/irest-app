@@ -10,6 +10,7 @@ import {
 import {
   isAudioFile,
   metaFromFile,
+  readAudioDuration,
   sortRecordings,
   type RecordingMeta,
 } from '../lib/recordings'
@@ -61,6 +62,33 @@ export function useRecordings() {
     refreshUsage()
   }, [refreshUsage, recordings.length])
 
+  // Backfill durations for recordings imported before lengths were stored, so
+  // existing users don't have to re-import. Reads audio metadata (cheap) one at
+  // a time and persists each result.
+  useEffect(() => {
+    const missing = loadMeta().filter((m) => m.duration == null)
+    if (missing.length === 0) return
+    let cancelled = false
+    ;(async () => {
+      for (const m of missing) {
+        if (cancelled) return
+        const blob = await getBlob(m.name)
+        if (!blob) continue
+        const duration = await readAudioDuration(blob)
+        if (cancelled || duration <= 0) continue
+        const list = loadMeta().map((x) =>
+          x.name === m.name ? { ...x, duration } : x,
+        )
+        saveMeta(list)
+        setRecordings(sortRecordings(list))
+      }
+    })()
+    return () => {
+      cancelled = true
+    }
+    // Re-run only when the set of recordings changes size (import/remove).
+  }, [recordings.length])
+
   const importFiles = useCallback(
     async (files: FileList | File[]) => {
       const audio = Array.from(files).filter(isAudioFile)
@@ -75,7 +103,9 @@ export function useRecordings() {
         setImporting({ total: audio.length, done, currentName: file.name })
         try {
           await putBlob(file.name, file)
-          byName.set(file.name, metaFromFile(file))
+          const meta = metaFromFile(file)
+          meta.duration = await readAudioDuration(file)
+          byName.set(file.name, meta)
         } catch {
           // Likely storage quota exceeded — stop importing further files.
           setImporting(null)

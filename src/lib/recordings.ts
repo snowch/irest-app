@@ -15,6 +15,8 @@ export interface RecordingMeta {
   size: number
   type: string
   addedAt: number
+  /** Length in seconds, read from the audio metadata (may be absent). */
+  duration?: number
 }
 
 const AUDIO_EXT = new Set([
@@ -82,4 +84,33 @@ export function formatTime(seconds: number): string {
   const m = Math.floor(seconds / 60)
   const s = Math.floor(seconds % 60)
   return `${m}:${String(s).padStart(2, '0')}`
+}
+
+/** Compact length for lists/links, e.g. "18 min". Null if unknown. */
+export function formatLength(seconds?: number): string | null {
+  if (!seconds || !Number.isFinite(seconds) || seconds <= 0) return null
+  if (seconds < 60) return '<1 min'
+  return `${Math.round(seconds / 60)} min`
+}
+
+/** Read an audio file's duration (seconds) from its metadata. Resolves 0 on failure. */
+export function readAudioDuration(blob: Blob): Promise<number> {
+  return new Promise((resolve) => {
+    let settled = false
+    const url = URL.createObjectURL(blob)
+    const audio = document.createElement('audio')
+    audio.preload = 'metadata'
+    const finish = () => {
+      if (settled) return
+      settled = true
+      const d = Number.isFinite(audio.duration) ? audio.duration : 0
+      URL.revokeObjectURL(url)
+      audio.removeAttribute('src')
+      resolve(d)
+    }
+    audio.onloadedmetadata = finish
+    audio.onerror = finish
+    window.setTimeout(finish, 8000)
+    audio.src = url
+  })
 }
