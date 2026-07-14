@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
+import { NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
 import Learn from './pages/Learn'
 import LearnModule from './pages/LearnModule'
@@ -54,9 +54,22 @@ function Nav() {
   )
 }
 
+// The content area scrolls internally (app-shell layout), so a route change
+// doesn't reset scroll on its own — do it here, or "Next lesson" lands you at
+// the bottom of the next page.
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    const el = document.querySelector('.content')
+    if (el) el.scrollTop = 0
+  }, [pathname])
+  return null
+}
+
 export default function App() {
   return (
     <div className="app-shell">
+      <ScrollToTop />
       <main className="content">
         <Routes>
           <Route path="/" element={<Home />} />
