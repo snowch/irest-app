@@ -1,13 +1,10 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { catalogTitle, getPrinciple, principles } from '../data/principles'
-import { useRecordings } from '../hooks/useRecordings'
-import { formatLength } from '../lib/recordings'
+import { Link, useParams } from 'react-router-dom'
+import { getPrinciple, principles } from '../data/principles'
 import Figure from '../components/Figure'
+import RelatedRecordings from '../components/RelatedRecordings'
 
 export default function PrincipleDetail() {
   const { slug = '' } = useParams()
-  const navigate = useNavigate()
-  const { recordings } = useRecordings()
   const principle = getPrinciple(slug)
 
   if (!principle) {
@@ -21,18 +18,6 @@ export default function PrincipleDetail() {
 
   const index = principles.findIndex((p) => p.slug === slug)
   const next = principles[index + 1]
-
-  // Map each related track number to the user's imported file (if any).
-  const related = principle.relatedTracks.map((num) => {
-    const imported = recordings.find((r) => r.num === num)
-    return {
-      num,
-      title: imported?.title ?? catalogTitle(num),
-      available: Boolean(imported),
-      name: imported?.name,
-      length: formatLength(imported?.duration),
-    }
-  })
 
   return (
     <article className="page page--reading">
@@ -49,37 +34,7 @@ export default function PrincipleDetail() {
         <Figure src={principle.image} alt={principle.imageAlt} />
       )}
 
-      <h2 className="section-title">Related recordings</h2>
-      <ul className="rec-links">
-        {related.map((r) => (
-          <li key={r.num}>
-            {r.available ? (
-              <button
-                className="rec-link rec-link--available"
-                onClick={() => navigate(`/practice?play=${r.num}`)}
-              >
-                <span className="rec-link__icon" aria-hidden="true">▶</span>
-                <span className="rec-link__title">
-                  {String(r.num).padStart(2, '0')} · {r.title}
-                </span>
-                {r.length && <span className="rec-link__len">{r.length}</span>}
-              </button>
-            ) : (
-              <div className="rec-link rec-link--missing">
-                <span className="rec-link__icon" aria-hidden="true">♫</span>
-                <span className="rec-link__title">
-                  {String(r.num).padStart(2, '0')} · {r.title}
-                </span>
-                <Link to="/practice" className="rec-link__add">Add</Link>
-              </div>
-            )}
-          </li>
-        ))}
-      </ul>
-      <p className="soft-note" style={{ textAlign: 'left' }}>
-        Recordings play in the Practice tab. They are yours, stored privately on
-        this device — this app includes no audio of its own.
-      </p>
+      <RelatedRecordings tracks={principle.relatedTracks} />
 
       <div className="reading__actions">
         {next ? (
