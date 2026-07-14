@@ -21,8 +21,23 @@ export default function Practice() {
   const [currentTime, setCurrentTime] = useState(0)
   const [duration, setDuration] = useState(0)
   const [error, setError] = useState<string | null>(null)
+  const [autoplayNext, setAutoplayNext] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem('irest-autoplay-next') === '1'
+    } catch {
+      return false
+    }
+  })
   const [searchParams, setSearchParams] = useSearchParams()
   const autoPlayedRef = useRef(false)
+
+  useEffect(() => {
+    try {
+      localStorage.setItem('irest-autoplay-next', autoplayNext ? '1' : '0')
+    } catch {
+      /* ignore */
+    }
+  }, [autoplayNext])
 
   useEffect(() => {
     if (folderInputRef.current) {
@@ -102,9 +117,11 @@ export default function Practice() {
   }
 
   function onEnded() {
-    // Log the finished recording as a completed session, then advance.
+    // Log the finished recording as a completed session.
     if (current) recordSession(`rec:${current.name}`, current.title)
-    step(1)
+    // Only roll into the next track if the user opted into continuous play.
+    if (autoplayNext) step(1)
+    else setIsPlaying(false)
   }
 
   async function onPick(e: React.ChangeEvent<HTMLInputElement>) {
@@ -283,6 +300,14 @@ export default function Practice() {
               aria-label="Next"
             >⏭</button>
           </div>
+          <label className="player-bar__auto">
+            <input
+              type="checkbox"
+              checked={autoplayNext}
+              onChange={(e) => setAutoplayNext(e.target.checked)}
+            />
+            <span>Autoplay next when finished</span>
+          </label>
         </div>
       )}
 
