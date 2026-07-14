@@ -403,6 +403,14 @@ a {
   flex-wrap: wrap;
   margin-top: 1.8rem;
 }
+.lesson-aside {
+  margin-top: 1rem;
+  font-size: 0.88rem;
+  color: var(--ink-faint);
+}
+.lesson-aside a {
+  font-weight: 600;
+}
 
 /* ---- Practice list ---- */
 .practice-grid {
@@ -958,6 +966,28 @@ a {
   color: #fff;
   font-size: 1.1rem;
   cursor: pointer;
+}
+
+/* ---- Step detail header ---- */
+.step-eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 0.4rem;
+}
+.step-role {
+  font-size: 1.02rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin: 0.1rem 0 0;
+}
+.step-kosha {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin: 0.2rem 0 0;
 }
 
 /* ---- Related recordings on a principle page ---- */

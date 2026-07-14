@@ -9,8 +9,8 @@ export default function Learn() {
     <div className="page">
       <h1 className="page__title">Learn</h1>
       <p className="page__lead">
-        Six short lessons introduce the ideas behind iRest. Read them in order,
-        or dip into whatever calls to you.
+        Short lessons introduce the ideas behind iRest. Read them in order, or
+        dip into whatever calls to you.
       </p>
 
       <ol className="lesson-list">
@@ -32,6 +32,20 @@ export default function Learn() {
           )
         })}
       </ol>
+
+      <h2 className="section-title">Go deeper</h2>
+      <div className="card-stack">
+        <Link className="cta-card" to="/principles">
+          <span className="cta-card__eyebrow">Explore each</span>
+          <span className="cta-card__title">The Core Principles</span>
+          <span className="cta-card__hint">Seven foundational ideas · a page each</span>
+        </Link>
+        <Link className="cta-card" to="/steps">
+          <span className="cta-card__eyebrow">Explore each</span>
+          <span className="cta-card__title">The Ten Steps</span>
+          <span className="cta-card__hint">The full practice, step by step</span>
+        </Link>
+      </div>
     </div>
   )
 }

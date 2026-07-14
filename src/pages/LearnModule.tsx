@@ -44,22 +44,16 @@ export default function LearnModule() {
         <Figure src={mod.image} alt={mod.imageAlt} caption={mod.imageCaption} />
       )}
 
-      {mod.cta && (
-        <Link className="btn btn--big" to={mod.cta.to}>
-          {mod.cta.label} →
-        </Link>
-      )}
-
       <div className="reading__actions">
         <button
-          className={'btn' + (complete ? ' btn--done' : '')}
+          className={'btn btn--ghost' + (complete ? ' btn--done' : '')}
           onClick={() => toggleModule(slug)}
         >
-          {complete ? '✓ Marked as read' : 'Mark as read'}
+          {complete ? '✓ Read' : 'Mark as read'}
         </button>
         {next ? (
           <button
-            className="btn btn--ghost"
+            className="btn"
             onClick={() => {
               if (!complete) toggleModule(slug)
               navigate(`/learn/${next.slug}`)
@@ -68,11 +62,18 @@ export default function LearnModule() {
             Next lesson →
           </button>
         ) : (
-          <Link className="btn btn--ghost" to="/practice">
+          <Link className="btn" to="/practice">
             Start practicing →
           </Link>
         )}
       </div>
+
+      {mod.cta && (
+        <p className="lesson-aside">
+          Or take a detour:{' '}
+          <Link to={mod.cta.to}>{mod.cta.label} →</Link>
+        </p>
+      )}
     </article>
   )
 }

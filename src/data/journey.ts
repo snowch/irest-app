@@ -78,6 +78,7 @@ export const modules: Module[] = [
       'You do not need to master these one at a time. The guided recordings move through them for you; over time the map becomes familiar.',
       'The map draws on the traditional five-kosha (sheath) model and on Richard Miller’s compass and river-banks framing of the protocol.',
     ],
+    cta: { label: 'Explore each step', to: '/steps' },
     image: 'figures/ten-steps-map.webp',
     imageAlt:
       'A relational map of the ten steps: the Heartfelt Mission as a compass at the top pointing true north; Intention as river-banks channelling the flow inward; concentric layers 4–8 (body, breath, emotions, thoughts, joy) nested around a glowing still centre, 9 Awareness; the Inner Resource (3) as an anchor at the lower left reaching every layer; and Integration (10) as an arrow returning outward into daily life, looping back to the mission. Steps 6 and 7 hold opposites at once.',

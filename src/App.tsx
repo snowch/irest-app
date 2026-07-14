@@ -5,6 +5,8 @@ import Learn from './pages/Learn'
 import LearnModule from './pages/LearnModule'
 import Principles from './pages/Principles'
 import PrincipleDetail from './pages/PrincipleDetail'
+import Steps from './pages/Steps'
+import StepDetail from './pages/StepDetail'
 import Prepare from './pages/Prepare'
 import Practice from './pages/Practice'
 import ProgressPage from './pages/ProgressPage'
@@ -77,6 +79,8 @@ export default function App() {
           <Route path="/learn/:slug" element={<LearnModule />} />
           <Route path="/principles" element={<Principles />} />
           <Route path="/principles/:slug" element={<PrincipleDetail />} />
+          <Route path="/steps" element={<Steps />} />
+          <Route path="/steps/:slug" element={<StepDetail />} />
           <Route path="/prepare" element={<Prepare />} />
           <Route path="/practice" element={<Practice />} />
           {/* Legacy links from earlier versions */}
